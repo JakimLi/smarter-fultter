@@ -12,7 +12,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int _current = 0;
-  List<Widget> screens = [Game(), Exam(), Tips(), Settings()];
+  List<Widget> _screens = [Game(), Exam(), Tips(), Settings()];
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +20,7 @@ class _HomeState extends State<Home> {
         appBar: AppBar(
           title: Text('Smarter'),
         ),
+        body: _screens[_current],
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: _current,
           onTap: _onTabTapped,
