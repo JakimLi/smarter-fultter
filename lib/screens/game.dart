@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:smarter/widgets/card.dart' as poker;
+import 'package:swipedetector/swipedetector.dart';
 
 class Game extends StatefulWidget {
   @override
@@ -21,7 +22,12 @@ class _GameState extends State<Game> {
         child: Column(children: <Widget>[
           Container(
               margin: EdgeInsets.only(top: 100.0),
-              child: _started ? _cards[_current] : poker.Card.back()),
+              child: _started
+                  ? SwipeDetector(
+                      onSwipeLeft: _next,
+                      onSwipeRight: _last,
+                      child: _cards[_current])
+                  : poker.Card.back()),
           Container(
               margin: EdgeInsets.only(top: 30.0),
               child: _started
@@ -29,17 +35,12 @@ class _GameState extends State<Game> {
                       textColor: Colors.white,
                       color: Colors.amber,
                       child: Text('完成'),
-                      onPressed: () {
-                        setState(() {
-                          _started = false;
-                        });
-                      },
-                    )
+                      onPressed: _finish)
                   : RaisedButton(
                       textColor: Colors.white,
                       color: Colors.amber,
                       child: Text('开始'),
-                      onPressed: () => _shuffleCards(),
+                      onPressed: _shuffleCards,
                     ))
         ]));
   }
@@ -56,5 +57,31 @@ class _GameState extends State<Game> {
       _cards = cards;
       _started = true;
     });
+  }
+
+  void _next() {
+    setState(() {
+      if (_current == _cards.length) {
+        return;
+      }
+      setState(() {
+        _current += 1;
+      });
+    });
+  }
+
+  void _last() {
+    if (_current == 0) {
+      return;
+    }
+    setState(() {
+      _current -= 1;
+    });
+  }
+
+  void _finish() {
+    _current = 0;
+    _started = false;
+    _cards = [];
   }
 }
