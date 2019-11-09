@@ -11,6 +11,6 @@ class Game extends StatefulWidget {
 class _GameState extends State<Game> {
   @override
   Widget build(BuildContext context) {
-    return poker.Card(Suit.clubs, '3');
+    return poker.Card(Suit.clubs, 'J');
   }
 }
