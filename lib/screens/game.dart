@@ -9,6 +9,9 @@ class Game extends StatefulWidget {
 class _GameState extends State<Game> {
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text("In Gaming"));
+    return Container(
+      margin: EdgeInsets.all(40.0),
+      child: Image(image: AssetImage('assets/background.jpg')),
+    );
   }
 }
