@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class Card extends StatelessWidget {
   bool _background = true;
   Suit _suit;
@@ -31,18 +32,6 @@ class Card extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(boxShadow: [
-        BoxShadow(
-            color: Colors.grey[300],
-            blurRadius: 10.0,
-            spreadRadius: 2.0,
-            offset: Offset(-10.0, -10.0)),
-        BoxShadow(
-            color: Colors.grey[300],
-            blurRadius: 10.0,
-            spreadRadius: 2.0,
-            offset: Offset(10.0, 10.0))
-      ]),
       child: Center(child: Image(image: AssetImage(cardImage()))),
     );
   }
