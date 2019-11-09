@@ -21,7 +21,10 @@ class _GameState extends State<Game> {
         color: Colors.grey[200],
         child: Column(children: <Widget>[
           Container(
-              margin: EdgeInsets.only(top: 100.0),
+              margin: EdgeInsets.only(top: 70.0),
+              child: Text('${_started ? _current + 1 : 0}/${_cards.length}')),
+          Container(
+              margin: EdgeInsets.only(top: 20.0),
               child: _started
                   ? SwipeDetector(
                       onSwipeLeft: _next,
@@ -61,7 +64,7 @@ class _GameState extends State<Game> {
 
   void _next() {
     setState(() {
-      if (_current == _cards.length) {
+      if (_current == _cards.length - 1) {
         return;
       }
       setState(() {
@@ -80,8 +83,10 @@ class _GameState extends State<Game> {
   }
 
   void _finish() {
-    _current = 0;
-    _started = false;
-    _cards = [];
+    setState(() {
+      _current = 0;
+      _started = false;
+      _cards = [];
+    });
   }
 }
