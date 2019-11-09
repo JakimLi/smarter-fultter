@@ -29,6 +29,10 @@ class Card extends StatelessWidget {
     _value = value.toUpperCase();
   }
 
+  Card.back() {
+    _background = true;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -37,10 +41,12 @@ class Card extends StatelessWidget {
   }
 
   String cardImage() {
+    if (_showBackground()) {
+      return 'assets/background.png';
+    }
+
     var suit = _suit.toString().split('.')[1];
-    return 'assets/cards/' +
-        (_showBackground() ? 'background' : '$suit\_$_value') +
-        '.png';
+    return 'assets/cards/$suit\_$_value.png';
   }
 
   bool _showBackground() {
