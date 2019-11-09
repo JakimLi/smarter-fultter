@@ -30,7 +30,7 @@ class _GameState extends State<Game> {
                   ),
                   RaisedButton(
                     textColor: Colors.white,
-                    color: Colors.amber,
+                    color: Colors.blueGrey,
                     child: Text('历史'),
                     onPressed: () {},
                   )
