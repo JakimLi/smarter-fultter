@@ -7,7 +7,7 @@ class Card extends StatelessWidget {
   Suit _suit;
   String _value;
 
-  final _values = [
+  static final _values = [
     '2',
     '3',
     '4',
@@ -55,3 +55,13 @@ class Card extends StatelessWidget {
 }
 
 enum Suit { clubs, diamonds, hearts, spades }
+
+List<Card> deck() {
+  List<Card> cards = [];
+  for (Suit suit in Suit.values) {
+    for (String value in Card._values) {
+      cards.add(Card(suit, value));
+    }
+  }
+  return cards;
+}
