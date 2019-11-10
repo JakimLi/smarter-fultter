@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:smarter/widgets/card.dart' as poker;
@@ -27,10 +28,17 @@ class _GameState extends State<Game> {
                       Text('${_started ? _current + 1 : 0}/${_cards.length}')),
               Container(
                   child: _started
-                      ? SwipeDetector(
-                          onSwipeLeft: _next,
-                          onSwipeRight: _last,
-                          child: _cards[_current])
+                      ? CarouselSlider(
+                          initialPage: 0,
+                          height: 300,
+                          enlargeCenterPage: true,
+                          enableInfiniteScroll: false,
+                          onPageChanged: (index) {
+                            setState(() {
+                              _current = index;
+                            });
+                          },
+                          items: _cards)
                       : poker.Card.back()),
               Container(
                   child: _started
@@ -59,26 +67,6 @@ class _GameState extends State<Game> {
     setState(() {
       _cards = cards;
       _started = true;
-    });
-  }
-
-  void _next() {
-    setState(() {
-      if (_current == _cards.length - 1) {
-        return;
-      }
-      setState(() {
-        _current += 1;
-      });
-    });
-  }
-
-  void _last() {
-    if (_current == 0) {
-      return;
-    }
-    setState(() {
-      _current -= 1;
     });
   }
 
