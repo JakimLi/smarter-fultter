@@ -19,33 +19,33 @@ class _GameState extends State<Game> {
   Widget build(BuildContext context) {
     return Container(
         color: Colors.grey[200],
-        child: Column(children: <Widget>[
-          Container(
-              margin: EdgeInsets.only(top: 70.0),
-              child: Text('${_started ? _current + 1 : 0}/${_cards.length}')),
-          Container(
-              margin: EdgeInsets.only(top: 20.0),
-              child: _started
-                  ? SwipeDetector(
-                      onSwipeLeft: _next,
-                      onSwipeRight: _last,
-                      child: _cards[_current])
-                  : poker.Card.back()),
-          Container(
-              margin: EdgeInsets.only(top: 30.0),
-              child: _started
-                  ? RaisedButton(
-                      textColor: Colors.white,
-                      color: Colors.amber,
-                      child: Text('完成'),
-                      onPressed: _finish)
-                  : RaisedButton(
-                      textColor: Colors.white,
-                      color: Colors.amber,
-                      child: Text('开始'),
-                      onPressed: _shuffleCards,
-                    ))
-        ]));
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              Container(
+                  child:
+                      Text('${_started ? _current + 1 : 0}/${_cards.length}')),
+              Container(
+                  child: _started
+                      ? SwipeDetector(
+                          onSwipeLeft: _next,
+                          onSwipeRight: _last,
+                          child: _cards[_current])
+                      : poker.Card.back()),
+              Container(
+                  child: _started
+                      ? RaisedButton(
+                          textColor: Colors.white,
+                          color: Colors.amber,
+                          child: Text('完成'),
+                          onPressed: _finish)
+                      : RaisedButton(
+                          textColor: Colors.white,
+                          color: Colors.amber,
+                          child: Text('开始'),
+                          onPressed: _shuffleCards,
+                        ))
+            ]));
   }
 
   void _shuffleCards() {
