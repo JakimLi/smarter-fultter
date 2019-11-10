@@ -4,7 +4,6 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:smarter/widgets/card.dart' as poker;
-import 'package:swipedetector/swipedetector.dart';
 
 class Game extends StatefulWidget {
   @override
