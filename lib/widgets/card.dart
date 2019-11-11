@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class Card extends StatelessWidget {
-  bool _background = true;
+  bool _back = true;
   Suit _suit;
   String _value;
 
@@ -24,13 +24,13 @@ class Card extends StatelessWidget {
   ];
 
   Card(Suit suit, String value) {
-    _background = false;
+    _back = false;
     _suit = suit;
     _value = value.toUpperCase();
   }
 
   Card.back() {
-    _background = true;
+    _back = true;
   }
 
   @override
@@ -41,20 +41,18 @@ class Card extends StatelessWidget {
   }
 
   String cardImage() {
-    if (_showBackground()) {
-      return 'assets/background.png';
+    if (_showBack()) {
+      return 'assets/back.png';
     }
 
     var suit = _suit.toString().split('.')[1];
     return 'assets/cards/$suit\_$_value.png';
   }
 
-  bool _showBackground() {
-    return _background || !_values.contains(_value);
+  bool _showBack() {
+    return _back || !_values.contains(_value);
   }
 }
-
-enum Suit { clubs, diamonds, hearts, spades }
 
 List<Card> deck() {
   List<Card> cards = [];
@@ -65,3 +63,5 @@ List<Card> deck() {
   }
   return cards;
 }
+
+enum Suit { clubs, diamonds, hearts, spades }
